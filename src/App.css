@@ -1,0 +1,192 @@
+/* ---------------------------- GOOGLE FONT IMPORTS ---------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10..0,100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+/* ---------------------------- CUSTOM VARIABLES ---------------------------- */
+:root {
+    /* -------- colors  --------*/
+    --grey: #f5f7fb;
+    --dark-grey: #D6DBF5;
+    --text-clr: #293264;
+    --border-clr: #dbdef0;
+    --btn-bg-clr: #4d5b9e;
+    --correct-answer: #94d7a2;
+    --incorrect-answer: #f8bcbc;
+
+
+    /* -------- fonts  --------*/
+    --fs-sm: 0.625rem;
+    --fs-md: 1rem;
+    --fs-lrg: 2rem;
+}
+
+
+/* ---------------------------- CSS RESETS---------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.1;
+}
+
+p {
+    line-height: 1.5;
+}
+
+/* ---------------------------- GENERAL STYLES---------------------------- */
+main {
+    min-height: 100vh;
+    background-color: var(--grey);
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+section {
+    padding: 50px 0;
+    width: 80%;
+    max-width: 900px;
+    margin-inline: auto;
+    position: relative;
+    z-index: 10;
+}
+
+.image {
+    position: absolute;
+}
+
+.img-1 {
+    top: 0;
+    right: 0;
+}
+
+.img-2 {
+    bottom: 0;
+    left: 0;
+}
+
+.btn {
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-family: Inter, sans-serif;
+    font-weight: bold;
+    background-color: var(--btn-bg-clr);
+    cursor: pointer;
+}
+
+.btn:active {
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------------------------- LANDING SECTION STYLES---------------------------- */
+.Landing {
+    text-align: center;
+    padding:20px;
+}
+
+.Landing__title {
+    font-size: 2rem;
+    color: var(--text-clr);
+    font-weight: bold;
+    font-family: Karla, sans-serif;
+}
+
+.Landing__text {
+    font-size: var(--fs-md);
+    color: var(--text-clr);
+    font-family: Inter, sans-serif;
+    margin-top: 1.125rem;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    margin-bottom: 1.813rem;
+}
+
+
+.Landing__btn {
+    padding: 16px 28px;
+    font-size: var(--fs-md);
+}
+
+/* ---------------------------- QUIZZICAL SECTION STYLES---------------------------- */
+.question-container {
+    border-bottom: 2px solid var(--border-clr);
+    margin-bottom: 20px;
+}
+
+.question {
+    font-family: Karla, sans-serif;
+    font-size: var(--fs-md);
+    font-weight: bold;
+    color: var(--text-clr);
+    letter-spacing: 1.1px;
+}
+
+.choices {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 20px 0;
+}
+
+.choices li {
+    padding: 10px;
+    border: 2px solid var(--btn-bg-clr);
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    font-family: Inter, sans-serif;
+}
+
+.choices li.selected {
+    background-color: var(--dark-grey);
+    border-color: var(--dark-grey);
+}
+
+.choices li.correct {
+    background-color: var(--correct-answer);
+    border-color: var(--correct-answer);
+}
+
+.choices li.incorrect {
+    background-color: var(--incorrect-answer);
+    border-color: var(--incorrect-answer);
+}
+
+.results-container {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.result-text {
+    font-size: var(--fs-md);
+    color: var(--text-clr);
+    font-family: Inter, sans-serif;
+    display: none;
+}
+
+.result-btn {
+    padding: 10px 21px;
+    font-size: var(--fs-md);
+    border-radius: 5px;
+}
+
+/* --------------------------- MEDIA QUERIES FOR RESPONSIVE DESIGN --------------------------- */
+@media (min-width: 48em) {
+    .choices {
+        flex-direction: row;
+    }
+
+    .results-container{
+        flex-direction: row;
+    }
+}
