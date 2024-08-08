@@ -6,6 +6,14 @@ import Trivia from "./Trivia";
 import { decode } from "html-entities";
 import { nanoid } from "nanoid";
 
+// Utility function to shuffle answers
+function shuffleAnswers(question) {
+  const possibleAnswers = [...question.incorrect_answers];
+  const randomIndex = Math.floor(Math.random() * (possibleAnswers.length + 1));
+  possibleAnswers.splice(randomIndex, 0, question.correct_answer);
+  return possibleAnswers;
+}
+
 function Quiz({ questions, start }) {
   const [selectedAnswers, setSelecetedAnswers] = React.useState({});
   const [isChecked, setIsChecked] = React.useState(false);
@@ -34,13 +42,13 @@ function Quiz({ questions, start }) {
   }
 
   function calculateScore() {
-    let score = 0;
-    shuffledQuestions.forEach((question) => {
-      if (selectedAnswers[question.id] === question.correct_answer) {
-        score = score + 1;
-      }
-      setScore(score);
-    });
+    let score = shuffledQuestions.reduce((accumlator, question) => {
+      return (
+        accumlator +
+        (selectedAnswers[question.id] === question.correct_answer ? 1 : 0)
+      );
+    }, 0);
+    setScore(score);
   }
 
   function checkAnswers() {
@@ -51,15 +59,6 @@ function Quiz({ questions, start }) {
 
   function playAgain() {
     start();
-  }
-
-  function shuffleAnswers(question) {
-    const possibleAnswers = [...question.incorrect_answers];
-    const randomIndex = Math.floor(
-      Math.random() * (possibleAnswers.length + 1)
-    );
-    possibleAnswers.splice(randomIndex, 0, question.correct_answer);
-    return possibleAnswers;
   }
 
   const triviaQuestions = shuffledQuestions.map((question) => {
