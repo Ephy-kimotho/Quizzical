@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
+import Confetti from "react-confetti";
+import { useWindowSize } from "react-use";
 import Trivia from "./Trivia";
 import { decode } from "html-entities";
 import { nanoid } from "nanoid";
@@ -75,6 +77,7 @@ function Quiz({ questions, start }) {
     );
   });
 
+  const { width, height } = useWindowSize();
   const buttonText = quizEnded ? "Play Again" : "Check Answers";
 
   const styles = {
@@ -82,20 +85,23 @@ function Quiz({ questions, start }) {
   };
 
   return (
-    <section>
-      {triviaQuestions}
-      <div className="results-container">
-        <h3 className="result-text" style={styles}>
-          {`You have got ${score} / ${shuffledQuestions.length} answers correct`}
-        </h3>
-        <button
-          className="result-btn btn"
-          onClick={quizEnded ? playAgain : checkAnswers}
-        >
-          {buttonText}
-        </button>
-      </div>
-    </section>
+    <React.Fragment>
+      {score === 5 && <Confetti width={width} height={height} />}
+      <section>
+        {triviaQuestions}
+        <div className="results-container">
+          <h3 className="result-text" style={styles}>
+            {`You have got ${score} / ${shuffledQuestions.length} answers correct`}
+          </h3>
+          <button
+            className="result-btn btn"
+            onClick={quizEnded ? playAgain : checkAnswers}
+          >
+            {buttonText}
+          </button>
+        </div>
+      </section>
+    </React.Fragment>
   );
 }
 
