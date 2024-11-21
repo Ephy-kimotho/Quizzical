@@ -79,6 +79,10 @@ section {
     cursor: pointer;
 }
 
+.btn:hover{
+    background-color: #3d477b;
+}
+
 .btn:active {
     box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.5);
 }
